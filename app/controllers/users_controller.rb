@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+  
     def show
       @user  = User.find(params[:id])
-      @posts = @user.posts.order(created_at: :desc)
+      @pagy, @posts = pagy(@user.posts.order(created_at: :desc), items: 9)
     end
-
+    
     def edit
       @user = User.find(params[:id])
     end

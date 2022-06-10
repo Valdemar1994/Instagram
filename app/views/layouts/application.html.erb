@@ -23,8 +23,13 @@
           </form>
         </div>
         <div class="user-section">
-        
-      <% if user_signed_in? %>
+
+        <% if user_signed_in? %>
+
+<a href="<%= new_post_path %>">
+<i class="fa fa-sticky-note"></i>
+</a>
+  
  <a href="<%= user_path(current_user)%>"> 
   <i class="fa fa-user"></i> 
 </a>
@@ -37,6 +42,8 @@
    <a href="<%= destroy_user_session_path%>" data-method="delete">
 <i class="fa fa-sign-out"></i>
 </a>
+
+
         </div>
       </div>
     </nav>

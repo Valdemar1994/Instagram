@@ -1,8 +1,3 @@
-<div class="homepage">
-  <div class='form-upload'>
-    <%= render 'upload_form' %>
-  </div>
-
 <div class="posts">
   <% @posts.each do |post| %>
     <section class="post">
@@ -18,12 +13,37 @@
       <%= link_to post.user.username, user_path(post.user) %>
     </div>
   </div>
-  <%= image_tag post.image, class: 'main-image' %>
+
+   <%=link_to post_path(post) do %>
+   <%=image_tag post.image, class: 'main-image' %>
+   <% end %>
+
   <div class="description">
     <%= post.description %>
   </div>
+
+  <p class="text-muted"><%= time_ago_in_words post.created_at %> ago </p>
+
+     <div class ="comment">
+      <h5>Comments:</h5>
+      <% post.comments.each do |comment|%>
+      <p><strong><%= comment.user.username %></strong>
+      <%= comment.comment %></p>
+      <p class="text-muted"><%= time_ago_in_words comment.created_at %> ago</p>
+      <% end %>
+      </div>
+
+      <div class="comment-box">
+      <%= form_for Comment.new do |f|%>
+      <%= f.hidden_field :post_id, value: post.id %>
+      <div class="input-group">
+      <%= f.text_field :comment, placeholder: "Add comment...", class: "form-control post-comment"%>
+      <div class ="input_group-append">
+      <%= f.submit "Add", class: "btn btn-success float-right" %>
+      <% end %>
+      </div>
+
 </section>
   <% end %>
-</div>
 
 <%== pagy_bootstrap_nav(@pagy) %>

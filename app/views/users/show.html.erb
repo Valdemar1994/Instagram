@@ -25,22 +25,9 @@
 </div>
 
 <div class="user-tabs">
-  <a class="tab active" href="">
+  <a class="tab active" href="<%= user_path(current_user)%>"> 
     <i class="fa fa-th"></i>
     POSTS
-  </a>
-  <a class="tab" href="">
-    <i class="fa fa-tv"></i>
-    IGTV
-  </a>
-  <a class="tab" href="">
-    <i class="fa fa-bookmark"></i>
-    SAVED
-  </a>
-  <a class="tab" href="">
-    <i class="fa fa-tag"></i>
-    TAGGED
-  </a>
 </div>
 
 <div class="user-images">
@@ -52,3 +39,5 @@
     </div>
   <% end %>
 </div>
+
+<%== pagy_bootstrap_nav(@pagy) %>
