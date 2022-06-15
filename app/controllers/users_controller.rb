@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
- 
-      def show
+        def show
       @user = User.find(params[:id])
       @follow = @user.followers.find_by(follower: current_user)
       @pagy, @posts = pagy(@user.posts.order(created_at: :desc), items: 9)
@@ -17,7 +16,6 @@ class UsersController < ApplicationController
 
       private
     def user_params
-        params.require(:user).permit(:username, :name, :website,
-                                     :bio, :email, :phone, :gender, :avatar)
+        params.require(:user).permit(:username, :name, :avatar)
     end
 end

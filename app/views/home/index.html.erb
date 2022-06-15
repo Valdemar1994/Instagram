@@ -31,7 +31,7 @@
      <div class ="comment">
       <h5>Comments:</h5>
       <% post.comments.each do |comment|%>
-      <p><strong><%= link_to comment.user.username,  user_path(post.user) %></strong>
+      <p><strong><%= link_to comment.user.username, user_path(post.user) %></strong>
       <%= comment.comment %></p>
       <p class="text-muted"><%= time_ago_in_words comment.created_at %> ago</p>
       <% end %>
