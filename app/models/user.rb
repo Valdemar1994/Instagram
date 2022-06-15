@@ -12,4 +12,7 @@ class User < ApplicationRecord
   has_many :following, foreign_key: "follower_id", class_name: "Follow"
 
   has_one_attached :avatar
+
+  validates :name, presence: true
+  validates :username, presence: true
 end
