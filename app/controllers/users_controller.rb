@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
  
-  
-    def show
-      @user  = User.find(params[:id])
+      def show
+      @user = User.find(params[:id])
+      @follow = @user.followers.find_by(follower: current_user)
       @pagy, @posts = pagy(@user.posts.order(created_at: :desc), items: 9)
     end
     

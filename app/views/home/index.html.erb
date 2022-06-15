@@ -24,10 +24,14 @@
 
   <p class="text-muted"><%= time_ago_in_words post.created_at %> ago </p>
 
+<div class="post-actions">
+      <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+
+
      <div class ="comment">
       <h5>Comments:</h5>
       <% post.comments.each do |comment|%>
-      <p><strong><%= comment.user.username %></strong>
+      <p><strong><%= link_to comment.user.username,  user_path(post.user) %></strong>
       <%= comment.comment %></p>
       <p class="text-muted"><%= time_ago_in_words comment.created_at %> ago</p>
       <% end %>

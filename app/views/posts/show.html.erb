@@ -1,6 +1,9 @@
 <div class="post-show row">
   <div class="col-md-8">
     <%=image_tag @post.image, class: 'image' %>
+    
+    <%= render 'posts/like' %>
+    
   </div>
   <div class="col-md-4">
     <div class="user">
@@ -17,29 +20,7 @@
       <%= @post.description %>
     </div>
 
-<div class ="comment">
-    <h4>Comments:</h4>
-    <% @post.comments.each do |comment|%>
-    <p>  <strong><%= comment.user.username  %></strong>
-    <%= comment.comment %></p>
-    <% end %>
-
-        <div class="comment-box">
-          <%= form_for Comment.new do |f|%>
-          <%= f.hidden_field :post_id, value: @post.id %>
-
-          <div class="input-group">
-            <%= f.text_field :comment, placeholder: "Add comment...", class: "form-control post-comment"%>
-            <div class ="input_group-append">
-              <%= f.submit "Add", class: "btn btn-success float-right" %>
-              <% end %>
-              </div>
-        </div>
-    </div>
-</div>
-
-
-
+ <%= render 'posts/comment' %>
 
   </div>
 </div>
