@@ -25,13 +25,19 @@
   <p class="text-muted"><%= time_ago_in_words post.created_at %> ago </p>
 
 <div class="post-actions">
-      <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+    <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+    <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
+    <% if pre_like %>
+    <%= button_to 'Unlike', post_like_path(post, pre_like), method: :delete %>
+    <% else %>
+    <%= button_to 'Like', post_likes_path(post), method: :post %>
+    <% end %>
 
 
      <div class ="comment">
       <h5>Comments:</h5>
       <% post.comments.each do |comment|%>
-      <p><strong><%= link_to comment.user.username, user_path(post.user) %></strong>
+      <p><strong><%= link_to comment.user.username, user_path(comment.user_id) %></strong>
       <%= comment.comment %></p>
       <p class="text-muted"><%= time_ago_in_words comment.created_at %> ago</p>
       <% end %>
@@ -40,14 +46,17 @@
       <div class="comment-box">
       <%= form_for Comment.new do |f|%>
       <%= f.hidden_field :post_id, value: post.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
       <div class="input-group">
       <%= f.text_field :comment, placeholder: "Add comment...", class: "form-control post-comment"%>
       <div class ="input_group-append">
       <%= f.submit "Add", class: "btn btn-success float-right" %>
       <% end %>
       </div>
-
+</div>
+</div>
+</div>
 </section>
   <% end %>
-
+</div>
 <%== pagy_bootstrap_nav(@pagy) %>

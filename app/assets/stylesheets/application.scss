@@ -9,7 +9,7 @@
 .container{
     max-width: 1000px;
   }
-  .navbar{
+  .navbar{ 
     border-bottom: 1px solid rgba(0,0,0,.0975);
   }
   .user-section{
@@ -21,12 +21,7 @@
       color: #000000d4;
     }
   }
-  .search-form{
-    input{
-      font-size: 13px;
-      text-align: center;
-    }
-  }
+
   .footer{
     font-size: 12px;
     padding-top: 30px;
@@ -41,4 +36,22 @@
     p{
       color: #999;
     }
+  }
+
+  .notice{
+background-color: #b8dbbe;;
+border-color: #f3f3f3;;
+color: #32ac3c;
+padding: 15px;
+margin-bottom: 20px;
+text-align: center;
+  }
+
+  .alert{
+    background-color: #e7cbcd;;
+    border-color: #f3f3f3;;
+    color: #c72e2e;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: center;
   }

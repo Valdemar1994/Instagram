@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
   
-  resources :users, only: [:show, :edit, :update] do 
-    resources :follows, only: [:create]
+  resources :users, only: [:index, :show, :edit, :update] do
+    resources :follows, only: [:index, :show, :create]
   end
 
   resources :follows, only: [:destroy]

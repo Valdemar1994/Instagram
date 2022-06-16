@@ -1,9 +1,15 @@
 class UsersController < ApplicationController
-        def show
-      @user = User.find(params[:id])
-      @follow = @user.followers.find_by(follower: current_user)
-      @pagy, @posts = pagy(@user.posts.order(created_at: :desc), items: 9)
-    end
+  include Pagy::Backend
+  
+  def index
+    @users = User.all
+  end
+
+  def show
+    @user = User.eager_load(:followers, :posts).find(params[:id])
+    @follow = @user.followers.find_by(follower: current_user)
+    @pagy, @posts = pagy(@user.posts.order(created_at: :desc), items: 9)
+  end
     
     def edit
       @user = User.find(params[:id])
