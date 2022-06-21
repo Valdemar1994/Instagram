@@ -2,8 +2,10 @@
   <div class="profile row">
     <div class="col-md-4 avatar">
       <div class="wrapper">
-    <% if current_user.avatar.attached? && @user.avatar.attached? %>
+    <% if @user.avatar.attached? %>
     <%= image_tag @user.avatar %>
+    <% else %>
+     <%= image_tag("unknown.png") %>
   <%end %>
 </div>
     </div>
@@ -15,28 +17,20 @@
           <button>Edit Profile</button>
         </a>
       </div>
-      <ul class="posts">
-       <li><span><%= @posts.count %></span> posts</li>
-       </ul>
+
+        <span class="name"><%= @user.name%></span>
 
   <% if @user.id != current_user.id %>
-  <%= link_to 'Follow', user_follows_path(@user), method: :post,  class: 'btn btn-danger' unless @follow.present? %>
+  <%= link_to 'Follow', user_follows_path(@user), method: :post,  class: 'btn btn-success' unless @follow.present? %>
   <%= link_to 'Unfollow', follow_path(@follow.id), method: :delete,  class: 'btn btn-danger' if @follow.present? %>
-  <% end%>
-  <%= link_to 'Following', user_follows_path(@user) %> : <%= @user.following.count %>
-  <%= link_to 'Followers', user_follow_path(@user) %> : <%= @user.followers.count %>
+  <% end %>
+  <h4><%= link_to 'Following', user_follows_path(@user) %> : <%= @user.following.count %></h4>
+  <h4><%= link_to 'Followers', user_follow_path(@user) %> : <%= @user.followers.count %></h4>
+ 
+      <h5><span><%= @posts.count %></span> posts</h5>
 
-
-      <h2 class="name"><%= @user.name%></h2>
-  
     </div>
   </div>
-</div>
-
-<div class="user-tabs">
-  <a class="tab active" href="<%= user_path(current_user)%>"> 
-    <i class="fa fa-th"></i>
-    POSTS
 </div>
 
 <div class="user-images">

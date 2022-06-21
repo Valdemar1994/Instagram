@@ -7,12 +7,12 @@ class PostsController < ApplicationController
     @post = Post.create(post_params)
     if @post.save
       flash[:notice] = "Succes! New post created!"
-      return_to_prev_location
+      redirect_to post_path(@post)
     else
       flash[:alert] = "Error! New post not created!"
       return_to_prev_location
+    end
   end
-end
 
   def show
     @post = Post.find(params[:id])
@@ -24,4 +24,4 @@ end
   params.require(:post).permit(:description, :image, :user_id)
     end
 
-  end
+end
