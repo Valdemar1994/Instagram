@@ -13,9 +13,11 @@
     <div class="col-md-8 basic-info">
       <div class="user-wrapper">
         <h2 class="username"><%= @user.username %></h2>
+        <% if @user.id == current_user.id %>
         <a class="edit-profile" href="<%= edit_user_path(current_user) %>">
           <button>Edit Profile</button>
         </a>
+        <% end %>
       </div>
 
         <span class="name"><%= @user.name%></span>
@@ -24,8 +26,8 @@
   <%= link_to 'Follow', user_follows_path(@user), method: :post,  class: 'btn btn-success' unless @follow.present? %>
   <%= link_to 'Unfollow', follow_path(@follow.id), method: :delete,  class: 'btn btn-danger' if @follow.present? %>
   <% end %>
-  <h4><%= link_to 'Following', user_follows_path(@user) %> : <%= @user.following.count %></h4>
-  <h4><%= link_to 'Followers', user_follow_path(@user) %> : <%= @user.followers.count %></h4>
+  <h5><%= link_to 'Following', user_follows_path(@user) %> : <%= @user.following.count %></h5>
+  <h5><%= link_to 'Followers', user_follow_path(@user) %> : <%= @user.followers.count %></h5>
  
       <h5><span><%= @posts.count %></span> posts</h5>
 

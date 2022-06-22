@@ -36,7 +36,7 @@
     </div>
 
      <div class ="comment">
-      <h5>All comments:</h5>
+      <h5>Comments:</h5>
       <% post.comments.each do |comment|%>
       <p><strong><%= link_to comment.user.username, user_path(comment.user_id) %></strong>
       <%= comment.comment %></p>
