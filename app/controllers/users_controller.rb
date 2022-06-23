@@ -16,12 +16,18 @@ class UsersController < ApplicationController
     end
     
     def update
-        current_user.update(user_params)
+      @user = User.find(params[:id])
+      if UserPolicy.new(@user, current_user).update?
+        @user.update(user_params)
         redirect_to current_user
+      else
+        flash[:alert] = "Error! You can update only yours account"
+        return_to_prev_location
+      end
     end
 
       private
     def user_params
-        params.require(:user).permit(:username, :name, :avatar)
+      params.require(:user).permit(:username, :name, :avatar)
     end
 end

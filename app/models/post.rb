@@ -6,7 +6,8 @@ class Post < ApplicationRecord
     has_one_attached :image
 
     validate :image_presence
-    
+    validates :description, length: { maximum: 256 }
+
     def image_presence
       errors.add(:image, "can't be blank") unless image.attached?
     end
