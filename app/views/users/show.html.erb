@@ -2,30 +2,32 @@
   <div class="profile row">
     <div class="col-md-4 avatar">
       <div class="wrapper">
-    <% if @user.avatar.attached? %>
-    <%= image_tag @user.avatar %>
-    <% else %>
-     <%= image_tag("unknown.png") %>
-  <%end %>
-</div>
+        <% if @user.avatar.attached? %>
+          <%= image_tag @user.avatar %>
+        <% else %>
+          <%= image_tag("unknown.png") %>
+        <% end %>
+      </div>
     </div>
     
     <div class="col-md-8 basic-info">
       <div class="user-wrapper">
         <h2 class="username"><%= @user.username %></h2>
         <a class="edit-profile" href="<%= edit_user_path(@user) %>">
-          <button>Edit Profile</button>
+        <button>Edit Profile</button>
         </a>
       </div>
 
-        <span class="name"><%= @user.name%></span>
+      <h3 class="name"><%= @user.name%></h3>
 
-  <% if @user.id != current_user.id %>
-  <%= link_to 'Follow', user_follows_path(@user), method: :post,  class: 'btn btn-success' unless @follow.present? %>
-  <%= link_to 'Unfollow', follow_path(@follow.id), method: :delete,  class: 'btn btn-danger' if @follow.present? %>
-  <% end %>
-  <h5><%= link_to 'Following', user_follows_path(@user) %> : <%= @user.following.count %></h5>
-  <h5><%= link_to 'Followers', user_follow_path(@user) %> : <%= @user.followers.count %></h5>
+      <% if @user.id != current_user.id %>
+        <%= link_to 'Follow', user_follows_path(@user), method: :post,  
+        class: 'btn btn-success' unless @follow.present? %>
+        <%= link_to 'Unfollow', follow_path(@follow.id), method: :delete,  
+        class: 'btn btn-danger' if @follow.present? %>
+      <% end %>
+      <h5><%= link_to 'Following', user_follows_path(@user) %> : <%= @user.following.count %></h5>
+      <h5><%= link_to 'Followers', user_follow_path(@user) %> : <%= @user.followers.count %></h5>
  
       <h5><span><%= @posts.count %></span> posts</h5>
 
@@ -43,4 +45,6 @@
   <% end %>
 </div>
 
-    <%== pagy_bootstrap_nav(@pagy) %>
+<div class="pagy">
+<%== pagy_bootstrap_nav(@pagy) %>
+</div>

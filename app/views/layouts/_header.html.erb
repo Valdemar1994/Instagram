@@ -1,30 +1,30 @@
 <nav class="navbar navbar-light bg-light d-flex">
-      <div class="container">
-        <div class="logo">
-          <a class="navbar-brand" href="<%= root_path %>">
-            <%= fa_stacked_icon "instagram", base: "hide-circle"%>
-            Instagram
-          </a>
-        </div>
-
-<div class="user-section">
-
-<a href="<%= new_post_path%>"> 
-<i class="fa fa-plus-square-o" aria-hidden="true"></i> 
-</a>
-
-<a href="<%= users_path%>"> 
-<i class="fa fa-users"></i> 
-</a>
-  
-<a href="<%= user_path(current_user)%>"> 
-<i class="fa fa-user-circle-o"></i>
-</a>
-
-<a href="<%= destroy_user_session_path%>" data-method="delete">
-<i class="fa fa-sign-out"></i>
-</a>
-
-        </div>
+    <div class="container">
+      <div class="logo">
+        <a class="navbar-brand" href="<%= root_path %>">
+          <%= fa_stacked_icon "instagram", base: "hide-circle"%>
+          Instagram
+        </a>
       </div>
-    </nav>
+
+      <div class="user-section">
+
+        <a href="<%= new_post_path%>"> 
+          <i class="fa fa-plus-square-o" aria-hidden="true"></i> 
+        </a>
+
+        <a href="<%= users_path%>"> 
+          <i class="fa fa-users"></i> 
+        </a>
+          
+        <a href="<%= user_path(current_user)%>"> 
+          <i class="fa fa-user-circle-o"></i>
+        </a>
+
+        <a href="<%= destroy_user_session_path%>" data-method="delete">
+          <i class="fa fa-sign-out"></i>
+        </a>
+
+      </div>
+    </div>
+</nav>

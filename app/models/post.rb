@@ -1,15 +1,14 @@
 class Post < ApplicationRecord
-    belongs_to :user
-    has_many :comments, dependent: :destroy
-    has_many :likes, dependent: :destroy
+  belongs_to :user
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
-    has_one_attached :image
+  has_one_attached :image
 
-    validate :image_presence
-    validates :description, length: { maximum: 256 }
+  validate :image_presence
+  validates :description, length: { maximum: 256 }
 
-    def image_presence
-      errors.add(:image, "can't be blank") unless image.attached?
-    end
+  def image_presence
+    errors.add(:image, "can't be blank") unless image.attached?
   end
-
+end

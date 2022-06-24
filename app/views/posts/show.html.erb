@@ -1,21 +1,20 @@
 <div class="post-show row">
   <div class="col-md-8">
     <%=image_tag @post.image, class: 'image' %>
-     <div class="description">
+    <div class="description">
       <%= @post.description %>
       <p class="text-muted"><%= time_ago_in_words @post.created_at %> ago </p>
     </div>
     
-   <div class="follow"> 
-   <p><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-    <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
-    <% if pre_like %>
-      <%= link_to 'Unlike', post_like_path(@post, pre_like), method: :delete, class: 'btn btn-danger'%>
-    <% else %>
-      <%= link_to 'Like', post_likes_path(@post), method: :post, class: 'btn btn-success' %>
-    <% end %>  
- </div>
-
+    <div class="like">
+      <p><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+      <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
+      <% if pre_like %>
+        <%= link_to 'Unlike', post_like_path(@post, pre_like), method: :delete, class: 'btn btn-danger'%>
+      <% else %>
+        <%= link_to 'Like', post_likes_path(@post), method: :post, class: 'btn btn-success' %>
+      <% end %>
+    </div>
   </div>
 
   <div class="col-md-4">
@@ -25,38 +24,31 @@
           <%= link_to user_path(@post.user) do %>
             <%= image_tag @post.user.avatar %>
           <% end %>
-        <% else %>
-            <%= image_tag("unknown.png") %>
         <% end %>
       </div>
       <%= link_to @post.user.username, user_path(@post.user), class: 'username' %>
     </div>
 
-<div class ="comment">
-    <h5>Comments:</h5>
-    <% @post.comments.each do |comment|%>
-    <p><strong><%= link_to comment.user.username, user_path(comment.user) %></strong>
-    <%= comment.comment %></p>
-    <p class="text-muted"><%= time_ago_in_words comment.created_at %> ago</p>
-<% end %>
+    <div class ="comment">
+      <h5>Comments:</h5>
+      <% @post.comments.each do |comment|%>
+        <p><strong><%= link_to comment.user.username, user_path(comment.user) %></strong>
+        <%= comment.comment %></p>
+        <p class="text-muted"><%= time_ago_in_words comment.created_at %> ago</p>
+      <% end %>
 
-        <div class="comment-box">
-          <%= form_for Comment.new do |f|%>
-          <%= f.hidden_field :post_id, value: @post.id %>
-          <%= f.hidden_field :user_id, value: current_user.id %>
-
-          <div class="input-group">
-            <%= f.text_field :comment, placeholder: "Add comment <= 100 s. ", 
-            class: "form-control post-comment", :maxlength => 100%>
-            <div class ="input_group-append">
-              <%= f.submit "Add", class: "btn btn-primary float-right" %>
-              <% end %>
-              </div>
-        </div>
+    <div class="comment-box">
+      <%= form_for Comment.new do |f|%>
+        <%= f.hidden_field :post_id, value: @post.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <div class="input-group">
+          <%= f.text_field :comment, placeholder: "Add comment <= 100 s. ", 
+          class: "form-control post-comment", :maxlength => 100%>
+          <div class ="input_group-append">
+              <%= f.submit "Add", class: "btn btn-success float-right" %>
+      <% end %>
+          </div>
+      </div>
     </div>
-</div>
-
-
   </div>
 </div>
-

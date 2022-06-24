@@ -7,7 +7,8 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+    <body>
+
     <!--Navigation Bar-->
 
     <% if user_signed_in? %>
@@ -17,11 +18,11 @@
     <!--Main content-->
 
     <% if notice %>
-    <p class="notice"><%= notice %></p>
+      <p class="notice"><%= notice %></p>
     <% end %>
 
     <% if alert %>
-    <p class="alert"><%= alert %></p>
+      <p class="alert"><%= alert %></p>
     <% end %>
 
     <main class="container" style="min-height: 500px;">
@@ -29,12 +30,12 @@
     </main>
 
     <!--Footer-->
+
     <footer class="container footer">
       <nav class="navbar d-flex">
         <ul>
           <li>ABOUT US
           </li>
-          <li>SUPPORT</li>
         </ul>
         <p> © 2022 INSTAGRAM </p>
       </nav>

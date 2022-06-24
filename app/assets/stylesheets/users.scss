@@ -57,6 +57,8 @@
   }
 
   .user-images{
+    border-radius: 5px;
+    border: 1px solid #e9e2e2;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -145,3 +147,7 @@
       color: white;
     }
   }
+
+.pagy{
+  padding-top: 25px;
+}
