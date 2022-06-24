@@ -36,8 +36,7 @@ RSpec.describe FollowsController, type: :controller do
     end
 
   # describe "#index" do
-  #   subject { process :index, method: :get, params: {user_id: user_you_want_to_follow.id } }
-      
+  #   subject { process :index, method: :get, params: {user_id: user_you_want_to_follow.id } } 
   #     it 'show user followers' do
   #       subject
   #     expect(response).to redirect_to user_follows_path
