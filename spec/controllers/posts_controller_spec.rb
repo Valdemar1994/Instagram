@@ -33,10 +33,15 @@ RSpec.describe PostsController, type: :controller do
       end
     end
 
+    # it 'dont redirect to post path' do
+    #   subject
+    #   expect(response).to redirect_to request.referer || root_path
+    # end
+
     context 'when post to long' do
       let(:params) { { post: attributes_for(:post, :with_long_post, user_id: user.id) } }
                     
-      it 'doesnt create a comment' do
+      it 'doesnt create a post' do
         expect { subject }.not_to change(Post, :count)
       end
     end
@@ -67,6 +72,9 @@ RSpec.describe PostsController, type: :controller do
       expect(assigns(:post)).to eq(post)
     end
 
-    it { is_expected.to render_template(:show) }
+    it 'render show template' do
+      subject
+      expect(response).to render_template :show
+    end
   end
 end

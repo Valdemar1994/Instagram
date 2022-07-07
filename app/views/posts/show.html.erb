@@ -6,17 +6,8 @@
       <p class="text-muted"><%= time_ago_in_words @post.created_at %> ago </p>
     </div>
     
-    <div class="like">
-      <p><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-      <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
-      <% if pre_like %>
-        <%= link_to 'Unlike', post_like_path(@post, pre_like), method: :delete, class: 'btn btn-danger'%>
-      <% else %>
-        <%= link_to 'Like', post_likes_path(@post), method: :post, class: 'btn btn-success' %>
-      <% end %>
-    </div>
-  </div>
-
+  <%= render "like_area", post: @post %>
+  
   <div class="col-md-4">
     <div class="user">
       <div class="avatar">
