@@ -12,8 +12,7 @@ class FollowsController < ApplicationController
   def create
     other_user = User.find(params[:user_id])
     @follow = Follow.new(follower_id: current_user.id,
-                         followed_id: other_user.id)
-    
+                         followed_id: other_user.id) 
     if current_user.following.pluck(:followed_id).exclude?(params[:user_id].to_i)
       if @follow.save
         return_to_prev_location

@@ -22,6 +22,34 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    @post ||= Post.find(params[:id])
+  end
+
+  def update
+    @post ||= Post.find(params[:id])
+    if UserPolicy.new(@user, current_user).update?
+      @post.update(post_params)
+      flash[:notice] = 'You post updated!'
+      redirect_to post_path(@post)
+    else
+      flash[:alert] = 'Error! You post can not update'
+      return_to_prev_location
+    end
+  end
+
+  def destroy
+    # if UserPolicy.new(@user, current_user).delete?
+     if @post = Post.find(params[:id])
+      @post.destroy
+      flash[:alert] = 'You post deleted!'
+      redirect_to root_path
+    else
+      flash[:alert] = 'Error! You post can not update'
+      return_to_prev_location
+    end
+  end
+
   private
 
   def post_params
