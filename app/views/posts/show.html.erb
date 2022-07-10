@@ -5,14 +5,14 @@
       <%= @post.description %>
       <p class="text-muted"><%= time_ago_in_words @post.created_at %> ago </p>
 
-     <% if @post.id == current_user.posts.ids %>
-    <div class="update-icon">
-      <a href="<%= edit_post_path%>"> 
-        <i class="fa fa-cog" aria-hidden="true"></i> 
-      </a>
+      <% if @post.user.id == current_user.id %>
+        <div class="update-icon">
+          <a href="<%= edit_post_path(@post) %>"> 
+          <i class="fa fa-cog" aria-hidden="true"></i> 
+          </a>
+        </div>
+      <% end %>
     </div>
-    <% end %>
-  </div>
     
   <div class="like">
     <p><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
@@ -32,6 +32,8 @@
           <%= link_to user_path(@post.user) do %>
             <%= image_tag @post.user.avatar %>
           <% end %>
+          <% else %>
+          <%= image_tag("unknown.png") %>
         <% end %>
       </div>
       <%= link_to @post.user.username, user_path(@post.user), class: 'username' %>

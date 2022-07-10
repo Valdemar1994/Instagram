@@ -6,10 +6,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.create(post_params)
     if @post.save
-      flash[:notice] = 'Succes! New post created!'
+      flash[:notice] = 'Succes! New post is created!'
       redirect_to post_path(@post)
     else
-      flash[:alert] = 'Error! New post not created!'
+      flash[:alert] = 'Error! New post is not created!'
       return_to_prev_location
     end
   end
@@ -28,24 +28,24 @@ class PostsController < ApplicationController
 
   def update
     @post ||= Post.find(params[:id])
-    if UserPolicy.new(@user, current_user).update?
+    if PostPolicy.new(@post, current_user).update?
       @post.update(post_params)
-      flash[:notice] = 'You post updated!'
+      flash[:notice] = 'Your post updated!'
       redirect_to post_path(@post)
     else
-      flash[:alert] = 'Error! You post can not update'
+      flash[:alert] = 'Error! Your post can not updated'
       return_to_prev_location
     end
   end
 
   def destroy
-    # if UserPolicy.new(@user, current_user).delete?
-     if @post = Post.find(params[:id])
+    @post = Post.find(params[:id])
+    if PostPolicy.new(@post, current_user).delete?
       @post.destroy
-      flash[:alert] = 'You post deleted!'
+      flash[:alert] = 'Your post deleted!'
       redirect_to root_path
     else
-      flash[:alert] = 'Error! You post can not update'
+      flash[:alert] = 'Error! Your post can not deleted'
       return_to_prev_location
     end
   end

@@ -1,29 +1,27 @@
 # frozen_string_literal: true
 
 class PostPolicy
-    attr_reader :user, :post, :record
+    attr_reader :post, :record
   
-    def initialize(user, post, record)
-      @user = user
+    def initialize(post, record)
       @post = post
       @record = record
     end
   
     def edit?
-      record == user
+      update?
     end
 
     def update?
-      edit?
+      post.user_id == record.id
     end
   
     def delete?
-      delete?
+      post.user_id == record.id
     end
   
     class Scope
-      def initialize(user, post, scope)
-        @user = user
+      def initialize(post, scope)
         @post = post
         @scope = scope
       end
@@ -34,6 +32,6 @@ class PostPolicy
   
       private
   
-      attr_reader :user, :post, :scope
+      attr_reader :post, :scope
     end
 end
