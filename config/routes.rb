@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :follows, only: [:destroy]
 
   resources :posts, only: %i[new create show edit update destroy] do
+    collection { patch :update }
     resources :likes
   end
 

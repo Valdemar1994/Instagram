@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
   let(:user) { create :user }
+  let(:post) { create :post, :with_image, user_id: user.id }
+  let(:other_user) { create :user }
+  let(:other_user_post) { create :post, :with_image, user_id: other_user.id }
+
   before { sign_in user }
 
   describe '#create' do
@@ -64,7 +68,7 @@ RSpec.describe PostsController, type: :controller do
     let(:params) { { user_id: user.id, id: post } }
     subject { get :show, params: params }
 
-    let!(:post) { create :post, :with_image }
+
 
     it 'assigns @post' do
       subject
@@ -81,7 +85,7 @@ RSpec.describe PostsController, type: :controller do
     let(:params) { { user_id: user.id, id: post } }
     subject { get :edit, params: params }
 
-    let!(:post) { create :post, :with_image }
+
 
     it 'render edit template' do
       subject
@@ -89,37 +93,42 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
-  # describe '#update' do
+  describe '#update' do
     
-  #     let(:post) { create :post, :with_image, user_id: user.id }
-  #     # let(:params) { { description: 'dsfdsfsdfsdfs' } }
-  #     let(:params) { { post: { user_id: user.id, id: post.id, description: 'new description'}} }
+  
+      
 
-  #     subject { process :update, method: :post, params: params }
+      context 'when update your post' do
+      let(:params) { { post: { id: post.id, description: 'new description'}} }
 
-  #     it 'updates post' do
-  #       subject
-  #       expect(Post.last.description).to eq 'new description'
-  #     end
+      subject { process :update, method: :patch, params: params }
 
-  #     # context 'with wrong params' do
-  #   #   let(:params) { { id: post.id, description: 'new description' } }
+      it 'updates post' do
+        subject
+        expect(post.reload.description).to eq 'new description'
+      end
+    end
 
-  #   #   it 'doesnt update post' do
-  #   #     subject
-  #   #     expect(Post.last.description).not_to eq 'new description'
-  #   #   end
-  #   # end
-  # end
+      context 'when update other users post' do
+        let(:params) { { post: { id: other_user_post.id, description: 'new description 2'}} }
+
+        subject { process :update, method: :patch, params: params }
+      it 'doesnt update post' do
+        subject
+        expect(other_user_post.reload.description).not_to eq 'new description 2'
+      end
+    end
+  end
 
   describe '#destroy' do
-    let(:post) { create :post, :with_image, user_id: user.id }    
+
+    let(:post) { create :post, :with_image, user_id: user.id }
+    let(:params) { { id: post.id } }
     subject { process :destroy, method: :delete, params: params }
 
-    let(:params) { { id: post.id, user_id: user.id } }
-      
-    it 'doesnt update post' do
+    it 'destroy post' do
       expect { subject }.not_to change(Post, :count)
     end
+
   end
 end

@@ -31,6 +31,6 @@ class LikesController < ApplicationController
   end
 
   def already_liked?
-    Like.where(user_id: current_user.id, post_id: params[:post_id]).exists?
+    Like.eager_load(:user).where(user_id: current_user.id, post_id: params[:post_id]).exists?
   end
 end

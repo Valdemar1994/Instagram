@@ -27,14 +27,14 @@ class PostsController < ApplicationController
   end
 
   def update
-    binding.pry
-    @post ||= Post.find(params[:id])
+
+    @post ||= Post.find(post_params[:id])
     if PostPolicy.new(@post, current_user).update?
       @post.update(post_params)
       flash[:notice] = 'Your post updated!'
       redirect_to post_path(@post)
     else
-      flash[:alert] = 'Error! Your post can not updated'
+      flash[:alert] = 'Error! Post can not be updated'
       return_to_prev_location
     end
   end
@@ -46,7 +46,7 @@ class PostsController < ApplicationController
       flash[:alert] = 'Your post deleted!'
       redirect_to root_path
     else
-      flash[:alert] = 'Error! Your post can not deleted'
+      flash[:alert] = 'Error! Post can not been deleted'
       return_to_prev_location
     end
   end
