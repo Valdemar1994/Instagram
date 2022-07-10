@@ -3,6 +3,8 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
+require 'simplecov'
+SimpleCov.start
 require 'rspec/rails'
 require 'spec_helper'
 require 'database_cleaner'
@@ -65,4 +67,11 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+end
+
+def sign_in(user)
+  visit user_session_path
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+  click_button 'Log in'
 end

@@ -31,16 +31,15 @@ RSpec.describe PostsController, type: :controller do
       it 'doesnt create a post' do
         expect { subject }.not_to change(Post, :count)
       end
-    end
 
-    # it 'dont redirect to post path' do
-    #   subject
-    #   expect(response).to redirect_to request.referer || root_path
-    # end
+      it 'dont redirect to post path' do
+        expect(subject).to redirect_to new_post_path
+      end
+    end
 
     context 'when post to long' do
       let(:params) { { post: attributes_for(:post, :with_long_post, user_id: user.id) } }
-                    
+
       it 'doesnt create a post' do
         expect { subject }.not_to change(Post, :count)
       end
@@ -75,6 +74,52 @@ RSpec.describe PostsController, type: :controller do
     it 'render show template' do
       subject
       expect(response).to render_template :show
+    end
+  end
+
+  describe '#edit' do
+    let(:params) { { user_id: user.id, id: post } }
+    subject { get :edit, params: params }
+
+    let!(:post) { create :post, :with_image }
+
+    it 'render edit template' do
+      subject
+      expect(response).to render_template :edit
+    end
+  end
+
+  # describe '#update' do
+    
+  #     let(:post) { create :post, :with_image, user_id: user.id }
+  #     # let(:params) { { description: 'dsfdsfsdfsdfs' } }
+  #     let(:params) { { post: { user_id: user.id, id: post.id, description: 'new description'}} }
+
+  #     subject { process :update, method: :post, params: params }
+
+  #     it 'updates post' do
+  #       subject
+  #       expect(Post.last.description).to eq 'new description'
+  #     end
+
+  #     # context 'with wrong params' do
+  #   #   let(:params) { { id: post.id, description: 'new description' } }
+
+  #   #   it 'doesnt update post' do
+  #   #     subject
+  #   #     expect(Post.last.description).not_to eq 'new description'
+  #   #   end
+  #   # end
+  # end
+
+  describe '#destroy' do
+    let(:post) { create :post, :with_image, user_id: user.id }    
+    subject { process :destroy, method: :delete, params: params }
+
+    let(:params) { { id: post.id, user_id: user.id } }
+      
+    it 'doesnt update post' do
+      expect { subject }.not_to change(Post, :count)
     end
   end
 end

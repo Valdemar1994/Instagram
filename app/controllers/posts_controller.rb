@@ -10,7 +10,7 @@ class PostsController < ApplicationController
       redirect_to post_path(@post)
     else
       flash[:alert] = 'Error! New post is not created!'
-      return_to_prev_location
+      redirect_to new_post_path
     end
   end
 
@@ -27,6 +27,7 @@ class PostsController < ApplicationController
   end
 
   def update
+    binding.pry
     @post ||= Post.find(params[:id])
     if PostPolicy.new(@post, current_user).update?
       @post.update(post_params)
@@ -53,6 +54,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:description, :image, :user_id)
+    params.require(:post).permit(:id, :description, :image, :user_id)
   end
 end
