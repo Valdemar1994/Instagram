@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'User', :js, type: :feature do
+  let(:user) { create :user }
+
   describe 'registration' do
     scenario 'success sign up' do
       visit new_user_registration_path
@@ -36,6 +38,12 @@ RSpec.describe 'User', :js, type: :feature do
         click_button 'Log in'
         expect(page).to have_current_path(user_session_path)
       end
+
+      scenario 'log in' do
+        sign_in(user)
+        find("a[href='#{destroy_user_session_path}']").click
+        expect(page).to have_current_path(user_session_path)
+      end
   end
-end
+  end
 end

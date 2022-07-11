@@ -85,8 +85,6 @@ RSpec.describe PostsController, type: :controller do
     let(:params) { { user_id: user.id, id: post } }
     subject { get :edit, params: params }
 
-
-
     it 'render edit template' do
       subject
       expect(response).to render_template :edit
@@ -94,9 +92,6 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe '#update' do
-    
-  
-      
 
       context 'when update your post' do
       let(:params) { { post: { id: post.id, description: 'new description'}} }
@@ -129,6 +124,5 @@ RSpec.describe PostsController, type: :controller do
     it 'destroy post' do
       expect { subject }.not_to change(Post, :count)
     end
-
   end
 end

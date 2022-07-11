@@ -26,18 +26,20 @@ RSpec.describe FollowsController, type: :controller do
       end
     end
 
-  describe "#destroy" do
-    subject { process :create, method: :delete, params: { user_id: user_you_want_to_follow.id } }
+  # describe "#destroy" do
     
-      it 'unfollows other user' do
-        expect { subject }.to change(Follow, :count)
-      end
-    end
+  #   Follow.create(follower_id: user.id, followed_id: user_you_want_to_follow.id)
+
+  #   subject { process :destroy, method: :delete, params: { id: user_you_want_to_follow.id} }
+
+  #     it 'unfollows other user' do
+  #       expect { subject }.to change { Follow.count }.by(-1)
+  #     end
+  #   end
 
     describe '#index' do
       subject { process :index, params: { user_id: user.id } }
-      
- 
+       
       it 'render index template' do
         subject
         expect(response).to render_template :index
