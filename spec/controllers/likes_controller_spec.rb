@@ -22,7 +22,7 @@ RSpec.describe LikesController, type: :controller do
     subject { process :destroy, method: :delete, params: { id: post.likes.ids, post_id: post.id } }
     
     it 'unlikes post' do
-      expect { subject }.not_to change { Like.count }
+      expect { subject }.not_to change(Like, :count)
     end
   end
   end

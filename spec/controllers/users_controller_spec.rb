@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   let(:user) { create(:user) }
+
   before { sign_in user }
 
   describe '#index' do
@@ -33,9 +34,9 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-    describe '#update' do
+  describe '#update' do
 
-     context 'when valid params' do
+    context 'when valid params' do
       let(:params) { { user: { id: user.id, username: 'NewName' }} }
 
       subject { process :update, method: :patch, params: params }
@@ -48,16 +49,16 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context 'when try to update other user params' do
-        let(:other_user) { create(:user) }
-        let(:params) { { user: { id: other_user.id, username: 'NewName' }} }
+      let(:other_user) { create(:user) }
+      let(:params) { { user: { id: other_user.id, username: 'NewName' }} }
   
-        subject { process :update, method: :patch, params: params }
+      subject { process :update, method: :patch, params: params }
   
-        it 'doesnt update other user parameters' do
+      it 'doesnt update other user parameters' do
   
-          subject
-          expect(other_user.reload.username).not_to eq 'NewName'
-        end
+        subject
+        expect(other_user.reload.username).not_to eq 'NewName'
       end
+    end
   end
 end

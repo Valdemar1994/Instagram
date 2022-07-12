@@ -7,17 +7,17 @@ RSpec.describe 'Posts', :js, type: :feature do
 describe "post", type: :feature do
   scenario 'type and create new post' do
     sign_in(user)
-    visit new_post_path
-      fill_in new_post_path['desription'], with: FFaker::Lorem.sentence 
-      attach_file(new_post_path["Выберите файл"], Rails.root + "spec/support/assets/test-image.jpg")
+    find("a[href='#{new_post_path}']").click
+    fill_in new_post_path['desription'], with: FFaker::Lorem.sentence 
+    attach_file(new_post_path["Выберите файл"], Rails.root + "spec/support/assets/test-image.jpg")
     click_button 'Create Post'
     expect(page).to have_current_path(post_path(Post.first))
-    end
+  end
 
     scenario 'update post' do
       sign_in(user)
       visit edit_post_path(post)
-        fill_in edit_post_path(post)['desription'], with: 'New description'
+      fill_in edit_post_path(post)['desription'], with: 'New description'
       click_button 'Submit'
       expect(post.reload.description).to eq 'New description'
     end

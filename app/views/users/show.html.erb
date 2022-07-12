@@ -13,9 +13,11 @@
     <div class="col-md-8 basic-info">
       <div class="user-wrapper">
         <h2 class="username"><%= @user.username %></h2>
+        <% if @user.id == current_user.id %>
         <a class="edit-profile" href="<%= edit_user_path(@user.id) %>">
         <button>Edit Profile</button>
         </a>
+        <% end %>
       </div>
 
       <h3 class="name"><%= @user.name%></h3>

@@ -92,7 +92,13 @@
     .details{
       flex: 1;
       border: 1px solid #dbdbdb;
-      border-left:none;
+    }
+    .edit_page{
+      align-content: center;
+      font-size: 25px;
+      color: #856769;
+      padding: 25px;
+      text-align:  center;
     }
   }
 
@@ -118,7 +124,7 @@
   .form-edit-user{
     padding: 30px 100px 10px 50px;
   .form-group, input{
-      font-size: 14px;
+      font-size: 20px;
       color: black;
     }
     input, textarea{
@@ -129,22 +135,18 @@
       font-weight: 600;
     }
   .avatar{
-      height: 38px;
-      width: 38px;
+      height: 75px;
+      width: 75px;
       border-radius: 50%;
     }
     .username{
-      font-size: 20px;
+      font-size: 25px;
       line-height: 22px;
       margin-bottom: 0;
     }
-    .change-photo{
-      color: #3897f0;
-      text-decoration: none;
-      font-size: 13px;
-    }
     input[type='submit']{
       color: white;
+      font-size: 20px;
     }
   }
 

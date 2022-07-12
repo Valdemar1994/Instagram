@@ -14,16 +14,18 @@ RSpec.describe 'User', :js, type: :feature do
         fill_in 'Name', with: FFaker::Name.name
       click_button 'Sign up'
       expect(page).to have_current_path(root_path)
+    end
   end
 
-  describe "the signin process", type: :feature do
+  describe "the log in/out process", type: :feature do
     before :each do
       User.create(email: 'user@example.com', password: 'password', password_confirmation: 'password',
       username: 'Vadim', name: 'Valdemar')
     end
-  scenario 'success log in' do
-    visit user_session_path
-    expect(page).to have_content 'Log in'
+
+    scenario 'success log in' do
+      visit user_session_path
+      expect(page).to have_content 'Log in'
       fill_in 'Email', with: 'user@example.com'
       fill_in 'Password', with: 'password'
       click_button 'Log in'
@@ -33,17 +35,16 @@ RSpec.describe 'User', :js, type: :feature do
     scenario 'fail log in' do
       visit user_session_path
       expect(page).to have_content 'Log in'
-        fill_in 'Email', with: 'user@example.com'
-        fill_in 'Password', with: 'incorrect_password'
-        click_button 'Log in'
-        expect(page).to have_current_path(user_session_path)
-      end
+      fill_in 'Email', with: 'user@example.com'
+      fill_in 'Password', with: 'incorrect_password'
+      click_button 'Log in'
+      expect(page).to have_current_path(user_session_path)
+    end
 
-      scenario 'log in' do
-        sign_in(user)
-        find("a[href='#{destroy_user_session_path}']").click
-        expect(page).to have_current_path(user_session_path)
-      end
-  end
+    scenario 'log out' do
+      sign_in(user)
+      find("a[href='#{destroy_user_session_path}']").click
+      expect(page).to have_current_path(user_session_path)
+    end
   end
 end

@@ -65,11 +65,9 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe '#show' do
-    let(:params) { { user_id: user.id, id: post } }
-    subject { get :show, params: params }
-
-
-
+    let(:params) { { id: post } }
+    subject { process :show, method: :get, params: params }
+    
     it 'assigns @post' do
       subject
       expect(assigns(:post)).to eq(post)
@@ -83,8 +81,8 @@ RSpec.describe PostsController, type: :controller do
 
   describe '#edit' do
     let(:params) { { user_id: user.id, id: post } }
-    subject { get :edit, params: params }
-
+    subject { process :edit, method: :get, params: params }
+    
     it 'render edit template' do
       subject
       expect(response).to render_template :edit
@@ -93,9 +91,8 @@ RSpec.describe PostsController, type: :controller do
 
   describe '#update' do
 
-      context 'when update your post' do
+    context 'when update your post' do
       let(:params) { { post: { id: post.id, description: 'new description'}} }
-
       subject { process :update, method: :patch, params: params }
 
       it 'updates post' do
@@ -104,10 +101,10 @@ RSpec.describe PostsController, type: :controller do
       end
     end
 
-      context 'when update other users post' do
-        let(:params) { { post: { id: other_user_post.id, description: 'new description 2'}} }
+    context 'when update other users post' do
+      let(:params) { { post: { id: other_user_post.id, description: 'new description 2'}} }
+      subject { process :update, method: :patch, params: params }
 
-        subject { process :update, method: :patch, params: params }
       it 'doesnt update post' do
         subject
         expect(other_user_post.reload.description).not_to eq 'new description 2'
@@ -116,7 +113,6 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe '#destroy' do
-
     let(:post) { create :post, :with_image, user_id: user.id }
     let(:params) { { id: post.id } }
     subject { process :destroy, method: :delete, params: params }
