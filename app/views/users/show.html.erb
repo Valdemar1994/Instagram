@@ -31,7 +31,7 @@
       <h5><%= link_to 'Following', user_follows_path(@user) %> : <%= @user.following.count %></h5>
       <h5><%= link_to 'Followers', user_follow_path(@user) %> : <%= @user.followers.count %></h5>
  
-      <h5><span><%= @posts.count %></span> posts</h5>
+      <h5><span><%= @posts.size %></span> posts</h5>
 
     </div>
   </div>

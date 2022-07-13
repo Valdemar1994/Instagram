@@ -15,7 +15,7 @@
     </div>
     
   <div class="like">
-    <p id="like_count"><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+    <p id="like_count"><%= @post.likes.size %> <%= (@post.likes.size) == 1 ? 'Like' : 'Likes'%></p>
       <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
       <% if pre_like %>
         <%= link_to 'Unlike', post_like_path(@post, pre_like), method: :delete, class: 'btn btn-danger'%>

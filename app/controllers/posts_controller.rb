@@ -16,7 +16,7 @@ class PostsController < ApplicationController
 
   def show
     if params[:id]
-      @post ||= Post.find(params[:id])
+      @post ||= Post.eager_load([user: :avatar_attachment], :likes, [comments: :user], [image_attachment: :blob]).find(params[:id])
     else
       redirect_to root_path
     end

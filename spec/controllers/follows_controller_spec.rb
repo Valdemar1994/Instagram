@@ -7,7 +7,7 @@ RSpec.describe FollowsController, type: :controller do
   before { sign_in user }
 
   describe "#create" do
-    subject { process :create, method: :post, params: {user_id: user_you_want_to_follow.id } }
+    subject { process :create, method: :post, params: { user_id: user_you_want_to_follow.id } }
 
     context 'when there is a first follow' do
 
@@ -18,7 +18,7 @@ RSpec.describe FollowsController, type: :controller do
     end
 
     context 'when user tries to follow twice' do
-
+    
       it 'doesnt follow other user twice' do
         Follow.create(follower_id: user.id, followed_id: user_you_want_to_follow.id)
         expect { subject }.not_to change(Follow, :count)
@@ -26,24 +26,34 @@ RSpec.describe FollowsController, type: :controller do
       end
     end
 
-  # describe "#destroy" do
-    
-  #   Follow.create(follower_id: user.id, followed_id: user_you_want_to_follow.id)
+  describe "#destroy" do
 
-  #   subject { process :destroy, method: :delete, params: { id: user_you_want_to_follow.id} }
+    before { Follow.create(follower_id: user.id, followed_id: user_you_want_to_follow.id) }
+    subject { process :destroy, method: :delete, params: { id: Follow.last.id } }
 
-  #     it 'unfollows other user' do
-  #       expect { subject }.to change { Follow.count }.by(-1)
-  #     end
-  #   end
-
-    describe '#index' do
-      subject { process :index, params: { user_id: user.id } }
-       
-      it 'render index template' do
-        subject
-        expect(response).to render_template :index
-      end
+    it 'unfollows other user' do
+      expect { subject }.to change(Follow, :count).by(-1)
     end
+  end
+
+  describe '#index' do
+    subject { process :index, params: { user_id: user.id } }
+       
+    it 'render index template' do
+      subject
+      expect(response).to render_template :index
+    end
+  end
+
+  describe '#show' do
+
+    subject { process :show, method: :get, params: { user_id: user.id, id: user_you_want_to_follow.id } }
+       
+    it 'render index template' do
+      subject
+      Follow.create(follower_id: user.id, followed_id: user_you_want_to_follow.id)
+      expect(response).to render_template :show
+    end
+  end
   end
 end

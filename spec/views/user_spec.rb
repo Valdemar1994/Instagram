@@ -17,6 +17,7 @@ RSpec.describe 'Users', :js, type: :feature do
       fill_in ['name'], with: 'Test'
       click_button 'Submit'
       expect(page).to have_current_path(user_path(user))
+      expect(page).to have_content 'Test'
     end
   end
 end

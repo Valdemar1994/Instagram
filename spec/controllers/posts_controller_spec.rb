@@ -112,13 +112,13 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
-  describe '#destroy' do
-    let(:post) { create :post, :with_image, user_id: user.id }
-    let(:params) { { id: post.id } }
-    subject { process :destroy, method: :delete, params: params }
+  describe "#destroy" do
+    let(:post) { create :post, :with_image }
 
-    it 'destroy post' do
-      expect { subject }.not_to change(Post, :count)
+    subject { process :destroy, method: :delete, params: { id: post.id } }
+    
+      it 'unlikes post' do
+        expect { subject }.to change(Post, :count)
+      end
     end
-  end
 end

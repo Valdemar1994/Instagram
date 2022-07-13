@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user ||= User.eager_load(:followers, :posts).find(params[:id])
+    @user ||= User.eager_load(:followers, :posts, [posts: :image_attachment]).find(params[:id])
     @follow = @user.followers.find_by(follower: current_user)
     @pagy, @posts = pagy(@user.posts.order(created_at: :desc), items: 9)
   end
