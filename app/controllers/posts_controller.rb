@@ -23,12 +23,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post ||= Post.find(params[:id])
+    @post = Post.find(params[:id])
   end
 
   def update
-
-    @post ||= Post.find(post_params[:id])
+    @post = Post.find(post_params[:id])
     if PostPolicy.new(@post, current_user).update?
       @post.update(post_params)
       flash[:notice] = 'Your post updated!'

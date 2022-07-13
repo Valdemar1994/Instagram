@@ -15,12 +15,11 @@ RSpec.describe LikesController, type: :controller do
   end
 
   describe "#destroy" do
-
     subject { process :destroy, method: :delete, params: { id: Like.last.id, post_id: post.id } }
     
-      it 'unlikes post' do
-        Like.create(user_id: user.id, post_id: post.id)
-        expect { subject }.to change(Like, :count).by(-1)
-      end
+    it 'unlikes post' do
+      Like.create(user_id: user.id, post_id: post.id)
+      expect { subject }.to change(Like, :count).by(-1)
     end
+  end
 end

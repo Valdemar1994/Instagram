@@ -27,7 +27,6 @@ RSpec.describe FollowsController, type: :controller do
     end
 
   describe "#destroy" do
-
     before { Follow.create(follower_id: user.id, followed_id: user_you_want_to_follow.id) }
     subject { process :destroy, method: :delete, params: { id: Follow.last.id } }
 
@@ -46,7 +45,6 @@ RSpec.describe FollowsController, type: :controller do
   end
 
   describe '#show' do
-
     subject { process :show, method: :get, params: { user_id: user.id, id: user_you_want_to_follow.id } }
        
     it 'render index template' do
@@ -55,5 +53,5 @@ RSpec.describe FollowsController, type: :controller do
       expect(response).to render_template :show
     end
   end
-  end
+end
 end

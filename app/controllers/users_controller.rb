@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   include Pagy::Backend
 
   def index
-    @users = User.all
+    @users ||= User.all
   end
 
   def show

@@ -120,5 +120,5 @@ RSpec.describe PostsController, type: :controller do
       it 'unlikes post' do
         expect { subject }.to change(Post, :count)
       end
-    end
+  end
 end

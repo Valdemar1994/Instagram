@@ -14,9 +14,9 @@
       <div class="user-wrapper">
         <h2 class="username"><%= @user.username %></h2>
         <% if @user.id == current_user.id %>
-        <a class="edit-profile" href="<%= edit_user_path(@user.id) %>">
-        <button>Edit Profile</button>
-        </a>
+          <a class="edit-profile" href="<%= edit_user_path(@user.id) %>">
+          <button>Edit Profile</button>
+          </a>
         <% end %>
       </div>
 
@@ -28,8 +28,9 @@
         <%= link_to 'Unfollow', follow_path(@follow.id), method: :delete,  
         class: 'btn btn-danger' if @follow.present? %>
       <% end %>
-      <h5><%= link_to 'Following', user_follows_path(@user) %> : <%= @user.following.count %></h5>
-      <h5><%= link_to 'Followers', user_follow_path(@user) %> : <%= @user.followers.count %></h5>
+
+      <h5><%= link_to 'Following', user_follows_path(@user) %> : <%= @user.following.size %></h5>
+      <h5><%= link_to 'Followers', user_follow_path(@user) %> : <%= @user.followers.size %></h5>
  
       <h5><span><%= @posts.size %></span> posts</h5>
 
@@ -48,5 +49,5 @@
 </div>
 
 <div class="pagy">
-<%== pagy_bootstrap_nav(@pagy) %>
+  <%== pagy_bootstrap_nav(@pagy) %>
 </div>

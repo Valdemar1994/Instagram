@@ -16,7 +16,9 @@ RSpec.describe HomeController, type: :controller do
     end
 
     context 'when user is not signed in' do
+
       before { sign_out user }
+      
       it 'redirects to the sign in page' do
         subject
         expect(response).to redirect_to new_user_session_path

@@ -4,8 +4,8 @@ class FollowsController < ApplicationController
   end
 
   def show
-    @user = User.eager_load(:followers).find(params[:user_id])
-    followers_ids = @user.followers.pluck(:follower_id)
+    user = User.find(params[:user_id])
+    followers_ids = user.followers.pluck(:follower_id)
     @followers = User.find(followers_ids)
   end
 
