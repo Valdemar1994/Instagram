@@ -5,10 +5,8 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[index show edit update] do
     collection { patch :update }
-    resources :follows, only: %i[index show create]
+    resources :follows, only: %i[index show create destroy]
   end
-
-  resources :follows, only: [:destroy]
 
   resources :posts, only: %i[new create show edit update destroy] do
     collection { patch :update }

@@ -38,6 +38,10 @@
           color: #262626;
           font-size: 15px;
           font-weight: 600;
+          text-decoration: none;
+          &:hover{
+            text-decoration: none;
+          }
         }
       }
       .main-image{
@@ -76,6 +80,7 @@
     display: flex;
     padding: 10px 0;
     border-bottom: 1px solid #efefef;
+    color: #000000d4;
     .avatar{
       width: 40px;
       height: 40px;
@@ -92,6 +97,7 @@
       color: #262626;
       font-size: 14px;
       font-weight: 600;
+      text-decoration: none;
       &:hover{
         text-decoration: none;
       }

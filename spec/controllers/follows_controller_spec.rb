@@ -28,7 +28,7 @@ RSpec.describe FollowsController, type: :controller do
 
   describe "#destroy" do
     before { Follow.create(follower_id: user.id, followed_id: user_you_want_to_follow.id) }
-    subject { process :destroy, method: :delete, params: { id: Follow.last.id } }
+    subject { process :destroy, method: :delete, params: { user_id: user.id, id: Follow.last.id } }
 
     it 'unfollows other user' do
       expect { subject }.to change(Follow, :count).by(-1)

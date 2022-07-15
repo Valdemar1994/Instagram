@@ -25,7 +25,7 @@
       <% if @user.id != current_user.id %>
         <%= link_to 'Follow', user_follows_path(@user), method: :post,  
         class: 'btn btn-success' unless @follow.present? %>
-        <%= link_to 'Unfollow', follow_path(@follow.id), method: :delete,  
+        <%= link_to 'Unfollow', user_follow_path(@user, @follow.id), method: :delete,  
         class: 'btn btn-danger' if @follow.present? %>
       <% end %>
 
