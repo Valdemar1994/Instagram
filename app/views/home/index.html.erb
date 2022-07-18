@@ -5,12 +5,13 @@
         <div class="avatar">
           <% if post.user.avatar.attached? %>
             <%= link_to user_path(post.user) do %>
-              <%= image_tag post.user.avatar %>
-            <% end %>
+            <%= image_tag post.user.avatar %>
+          <% end %>
           <% else %>
             <%= image_tag("unknown.png") %>
           <% end %>
         </div>
+
         <div class="username">
           <%= link_to post.user.username, user_path(post.user) %>
         </div>
@@ -27,7 +28,7 @@
         <% if post.user.id == current_user.id %>
           <div class="update-icon">
             <a href="<%= edit_post_path(post) %>"> 
-            <i class="fa fa-cog" aria-hidden="true"></i> 
+              <i class="fa fa-cog" aria-hidden="true"></i> 
             </a>
           </div>
         <% end %>
@@ -56,15 +57,14 @@
         <%= form_for Comment.new do |f|%>
           <%= f.hidden_field :post_id, value: post.id %>
           <%= f.hidden_field :user_id, value: current_user.id %>
+          
           <div class="input-group">
-            <%= f.text_field :comment, placeholder: "Add comment. Max lenght = 100 symbols.", 
-            class: "form-control post-comment", :maxlength => 100%>
-            <div class ="input_group-append">
-              <%= f.submit "Add", class: "btn btn-primary float-right" %>
-        <% end %>
-            </div>
+            <%= f.text_field :comment, placeholder: "Add comment. Max lenght = 100 symbols.", class: "form-control post-comment", maxlength: 100%>
+            <%= f.submit "Add", class: "btn btn-primary float-right" %>
           </div>
+        <% end %>
       </div>
+
     </section>
   <% end %>
 </div>

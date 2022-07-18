@@ -1,21 +1,22 @@
-.col-md-8{
-  .description{
+.col-md-8 {
+  .description {
     padding: 16px;
     word-wrap: break-word;
     border: 1px solid #efefef;
   }
-  .like{
+
+  .like {
     padding: 16px;
     line-height: 5px;
   }
 }
 
-.col-md-4{
-  .comment{
+.col-md-4 {
+  .comment {
     padding: 16px;
     line-height: 120%;
     border: 1px solid #efefef;
     word-wrap: break-word;
-    white-space: normal 
+    white-space: normal;
   }
 }

@@ -1,155 +1,172 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
-
-.profile .avatar{
-    .wrapper{
-      width: 140px;
-      height: 140px;
-      margin: 40px auto;
-    }
-    .wrapper img{
-      width: 100%;
-      border-radius: 50%;
-    }
-  }
-  
-  .profile .basic-info{
-    padding: 40px 0;
-    .user-wrapper{
-      display: flex;
-    }
-    .username{
-      font-size: 30px;
-      line-height: 40px;
-      font-weight: 200;
-    }
-    .edit-profile{
-      margin-left: 20px;
-      margin-top: 5px;
-    }
-    .edit-profile button{
-      background-color: transparent;
-      border-radius: 5px;
-      border: 1px solid #dbdbdb;
-      color: #262626;
-      font-size: 14px;
-      padding: 4px 10px;
-      font-weight: 500;
-    }
-   
-    ul.posts{
-      padding-left: 0;
-      > li{
-        display: inline;
-        padding-right: 40px;
-        font-size: 15px;
-        span{
-          color: #262626;
-          font-weight: 600;
-        }
-      }
-    }
-    .name{
-      font-size: 23px;
-      font-weight: 600;
-    }
+.profile .avatar {
+  .wrapper {
+    width: 140px;
+    height: 140px;
+    margin: 40px auto;
   }
 
-  .user-images{
+  .wrapper img {
+    width: 100%;
+    border-radius: 50%;
+  }
+}
+
+.profile .basic-info {
+  padding: 40px 0;
+
+  .user-wrapper {
+    display: flex;
+  }
+
+  .username {
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: 200;
+  }
+
+  .edit-profile {
+    margin-left: 20px;
+    margin-top: 5px;
+  }
+
+  .edit-profile button {
+    background-color: transparent;
     border-radius: 5px;
-    border: 1px solid #e9e2e2;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin: 0 20px;
-  
-    .wrapper{
-      width: 280px;
-      height: 280px;
-      margin: 15px;
-  
-      img{
-        width: 100%;
-        border-radius: 4%;
-        width: 278px;
-        height: 278px;
-        object-fit: cover;
-        border: 1px solid #efefef;
-      }
-    }
-  }
-
-  .user-edit-page{
-    display: flex;
-    margin-top: 60px;
-    min-height: 500px;
-    
-    .actions{
-      width: 220px;
-      border: 1px solid #dbdbdb;  
-    }
-    .details{
-      flex: 1;
-      border: 1px solid #dbdbdb;
-    }
-    .edit_page{
-      align-content: center;
-      font-size: 25px;
-      color: #856769;
-      padding: 25px;
-      text-align:  center;
-    }
-  }
-
-  .actions{
-    width: 220px;
     border: 1px solid #dbdbdb;
-  .nav-link{
-      font-size: 14px;
-      background-color: white;
-      color: black;
-      border-radius: 0;
-      padding: 12px 0 12px 30px;
-      &:hover{
-        cursor: pointer;
+    color: #262626;
+    font-size: 14px;
+    padding: 4px 10px;
+    font-weight: 500;
+  }
+
+  ul.posts {
+    padding-left: 0;
+
+    > li {
+      display: inline;
+      padding-right: 40px;
+      font-size: 15px;
+
+      span {
+        color: #262626;
+        font-weight: 600;
       }
-    }
-    .nav-pills .nav-link.active{
-      border-left: 2px solid;
-      font-weight: 600;
     }
   }
 
-  .form-edit-user{
-    padding: 30px 100px 10px 50px;
-  .form-group, input{
-      font-size: 20px;
-      color: black;
-    }
-    input, textarea{
+  .name {
+    font-size: 23px;
+    font-weight: 600;
+  }
+}
+
+.user-images {
+  border-radius: 5px;
+  border: 1px solid #e9e2e2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 0 20px;
+
+  .wrapper {
+    width: 280px;
+    height: 280px;
+    margin: 15px;
+
+    img {
+      width: 100%;
+      border-radius: 4%;
+      width: 278px;
+      height: 278px;
+      object-fit: cover;
       border: 1px solid #efefef;
     }
-    .col-form-label{
-      text-align: right;
-      font-weight: 600;
-    }
-  .avatar{
-      height: 75px;
-      width: 75px;
-      border-radius: 50%;
-    }
-    .username{
-      font-size: 25px;
-      line-height: 22px;
-      margin-bottom: 0;
-    }
-    input[type='submit']{
-      color: white;
-      font-size: 20px;
+  }
+}
+
+.user-edit-page {
+  display: flex;
+  margin-top: 60px;
+  min-height: 500px;
+
+  .actions {
+    width: 220px;
+    border: 1px solid #dbdbdb;
+  }
+
+  .details {
+    flex: 1;
+    border: 1px solid #dbdbdb;
+  }
+
+  .edit_page {
+    align-content: center;
+    font-size: 25px;
+    color: #856769;
+    padding: 25px;
+    text-align: center;
+  }
+}
+
+.actions {
+  width: 220px;
+  border: 1px solid #dbdbdb;
+
+  .nav-link {
+    font-size: 14px;
+    background-color: white;
+    color: black;
+    border-radius: 0;
+    padding: 12px 0 12px 30px;
+
+    &:hover {
+      cursor: pointer;
     }
   }
 
-.pagy{
+  .nav-pills .nav-link.active {
+    border-left: 2px solid;
+    font-weight: 600;
+  }
+}
+
+.form-edit-user {
+  padding: 30px 100px 10px 50px;
+
+  .form-group,
+  input {
+    font-size: 20px;
+    color: black;
+  }
+
+  input,
+  textarea {
+    border: 1px solid #efefef;
+  }
+
+  .col-form-label {
+    text-align: right;
+    font-weight: 600;
+  }
+
+  .avatar {
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+  }
+
+  .username {
+    font-size: 25px;
+    line-height: 22px;
+    margin-bottom: 0;
+  }
+
+  input[type="submit"] {
+    color: white;
+    font-size: 20px;
+  }
+}
+
+.pagy {
   padding-top: 25px;
 }
