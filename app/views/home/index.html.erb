@@ -48,7 +48,12 @@
         <h5>Comments:</h5>
         <% post.comments.each do |comment|%>
           <p><strong><%= link_to comment.user.username, user_path(comment.user_id) %></strong>
-          <%= comment.comment %></p>
+          <%= comment.comment %>
+            <% if comment.user.id == current_user.id %>
+          <%= link_to '', comment_path(comment), method: :delete, class: "fa fa-trash-o",
+          data: {confirm: "You want to delete this comment?"} %>
+        <% end %>
+          </p>
           <p class="text-muted"><%= time_ago_in_words comment.created_at %> ago</p>
         <% end %>
       </div>

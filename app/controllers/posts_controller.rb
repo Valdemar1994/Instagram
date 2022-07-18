@@ -17,6 +17,7 @@ class PostsController < ApplicationController
   def show
     if params[:id]
       @post ||= Post.eager_load([user: :avatar_attachment], :likes, [comments: :user], [image_attachment: :blob]).find(params[:id])
+      @pre_like = @post.likes.find { |like| like.user_id == current_user.id}
     else
       redirect_to root_path
     end

@@ -10,7 +10,6 @@ RSpec.describe CommentsController, type: :controller do
 
     context 'when params is valid' do
       let(:params) { { comment: attributes_for(:comment, post_id: post.id, user_id: user.id) } }
-
       it 'creates a comment' do
         expect { subject }.to change(Comment, :count).by(1)
       end
