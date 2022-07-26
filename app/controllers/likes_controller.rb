@@ -9,7 +9,8 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    Like.where(post_id: @post.id, user_id: current_user.id).destroy_all
+    like = Like.find_by(user_id: current_user.id, post_id: @post.id)
+    like.destroy if like
     return_to_prev_location
   end
 
