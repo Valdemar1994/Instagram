@@ -162,3 +162,18 @@
 .action-button {
   margin-top: 12px;
 }
+
+#delete_comment {
+  opacity: 0;
+  font-size: 1px;
+}
+
+.comment__line {
+  display: flex;
+  justify-content: space-between;
+
+  .comment__gap {
+    display: flex;
+    gap: 10px;
+  }
+}
