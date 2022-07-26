@@ -13,12 +13,12 @@
     </div>
     
     <div class="like">
-      <p id="like_count"><%= @post.likes.size %> <%= (@post.likes.size) == 1 ? 'Like' : 'Likes'%></p>
-        <% if @pre_like %>
-          <%= link_to 'Unlike', post_like_path(@post, @pre_like), method: :delete, class: 'btn btn-danger'%>
-        <% else %>
-          <%= link_to 'Like', post_likes_path(@post), method: :post, class: 'btn btn-success' %>
-        <% end %>
+      <p><%= @post.likes.size %> <%= (@post.likes.size) == 1 ? 'Like' : 'Likes'%></p>
+      <% if has_like?(@post, current_user) %>
+        <%= link_to 'Unlike', like_path(id: @post.id), method: :delete, class: 'btn btn-danger'%>
+      <% else %>
+        <%= link_to 'Like', likes_path(id: @post.id), method: :post, class: 'btn btn-success'%>
+      <% end %>
     </div>
   </div>
   

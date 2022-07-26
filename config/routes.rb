@@ -10,8 +10,8 @@ Rails.application.routes.draw do
 
   resources :posts, only: %i[new create show edit update destroy] do
     collection { patch :update }
-    resources :likes
   end
 
   resources :comments, only: %i[create destroy]
+  resources :likes, only: %i[create destroy]
 end
