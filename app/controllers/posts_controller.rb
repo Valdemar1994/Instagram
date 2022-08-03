@@ -25,6 +25,10 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    if !PostPolicy.new(@post, current_user).edit?
+      flash[:alert] = 'Error! You can update only yours account'
+      redirect_to @post
+    end
   end
 
   def update

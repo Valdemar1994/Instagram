@@ -9,7 +9,7 @@ class PostPolicy
     end
   
     def edit?
-      update?
+      post.user_id == record.id
     end
 
     def update?

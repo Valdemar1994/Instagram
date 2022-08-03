@@ -13,7 +13,7 @@ class UserPolicy
   end
 
   def edit?
-    update?
+    record == user
   end
 
   class Scope
