@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     if !UserPolicy.new(@user, current_user).edit?
-      flash[:alert] = 'Error! You can update only yours account'
+      flash[:alert] = 'Error! You can edit only yours account!'
       redirect_to @user
     end
   end
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
       @user.update(user_params)
       redirect_to current_user
     else
-      flash[:alert] = 'Error! You can update only yours account'
+      flash[:alert] = 'Error! You can update only yours account!'
       return_to_prev_location
     end
   end

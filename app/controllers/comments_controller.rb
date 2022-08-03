@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
     if @comment.save
       return_to_prev_location
     else
-      flash[:alert] = 'Comment was not created'
+      flash[:alert] = 'Comment was not created!'
       return_to_prev_location
     end
   end
@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
     if CommentPolicy.new(@comment, current_user).delete?
       return_to_prev_location
     else
-       flash[:alert] = 'Comment was not deleted'
+       flash[:alert] = 'Comment was not deleted!'
        return_to_prev_location
     end
   end

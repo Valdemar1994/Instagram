@@ -30,7 +30,7 @@ RSpec.describe 'Comments', :js, type: :feature do
       fill_in post_path(post)['comment'], with: FFaker::Lorem.sentence 
       click_button 'Add'
       expect(page).to have_current_path(post_path(post))
-      click_link '.'
+      click_link 'del'
       page.driver.browser.switch_to.alert.accept
       expect(page).to have_current_path(post_path(post))
     end

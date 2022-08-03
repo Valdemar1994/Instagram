@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
     if !PostPolicy.new(@post, current_user).edit?
-      flash[:alert] = 'Error! You can update only yours account'
+      flash[:alert] = 'Error! You can edit only yours posts!'
       redirect_to @post
     end
   end
@@ -38,7 +38,7 @@ class PostsController < ApplicationController
       flash[:notice] = 'Your post updated!'
       redirect_to post_path(@post)
     else
-      flash[:alert] = 'Error! Post can not be updated'
+      flash[:alert] = 'Error! Post can not be updated!'
       return_to_prev_location
     end
   end
@@ -50,7 +50,7 @@ class PostsController < ApplicationController
       flash[:alert] = 'Your post deleted!'
       redirect_to root_path
     else
-      flash[:alert] = 'Error! Post can not been deleted'
+      flash[:alert] = 'Error! Post can not been deleted!'
       return_to_prev_location
     end
   end
