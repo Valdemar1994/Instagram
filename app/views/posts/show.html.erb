@@ -45,7 +45,8 @@
             <%= comment.comment %>
           </div>
           <% if comment.user.id == current_user.id %>
-            <%= link_to comment_path(comment), method: :delete, class: "fa fa-trash-o", data: {confirm: "You want to delete this comment?"} do %>
+            <%= link_to comment_path(comment), method: :delete, class: "fa fa-trash-o", 
+            data: {confirm: "You want to delete this comment?"} do %>
               <span id="delete_comment">del</span>
             <% end %>
           <% end %>

@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def create
-    @comment = Comment.new(comment_params)
+    @comment = Comment.create(comment_params)
     if @comment.save
       return_to_prev_location
     else

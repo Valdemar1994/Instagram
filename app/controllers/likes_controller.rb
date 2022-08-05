@@ -2,7 +2,7 @@ class LikesController < ApplicationController
   before_action :find_post
 
   def create
-    if Like.where(user_id: current_user.id, post_id: @post.id).blank?
+    if Like.find_by(user_id: current_user.id, post_id: @post.id).blank?
       Like.create(user_id: current_user.id, post_id: @post.id)
     end
     return_to_prev_location

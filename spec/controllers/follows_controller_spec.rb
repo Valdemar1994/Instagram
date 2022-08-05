@@ -25,6 +25,7 @@ RSpec.describe FollowsController, type: :controller do
         expect(flash[:alert]).to match("Error! You connot follow twice")
       end
     end
+  end
 
   describe "#destroy" do
     before { Follow.create(follower_id: user.id, followed_id: user_you_want_to_follow.id) }
@@ -53,5 +54,4 @@ RSpec.describe FollowsController, type: :controller do
       expect(response).to render_template :show
     end
   end
-end
 end
