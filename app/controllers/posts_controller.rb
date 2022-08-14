@@ -16,7 +16,8 @@ class PostsController < ApplicationController
 
   def show
     if params[:id]
-      @post ||= Post.eager_load([user: :avatar_attachment], :likes, [comments: :user], [image_attachment: :blob]).find(params[:id])
+      @post ||= Post.eager_load([user: :avatar_attachment], :likes, 
+      [comments: :user], [image_attachment: :blob]).find(params[:id])
       @pre_like = @post.likes.find { |like| like.user_id == current_user.id}
     else
       redirect_to root_path
@@ -25,7 +26,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    if !PostPolicy.new(@post, current_user).edit?
+    unless PostPolicy.new(@post, current_user).edit?
       flash[:alert] = 'Error! You can edit only yours posts!'
       redirect_to @post
     end

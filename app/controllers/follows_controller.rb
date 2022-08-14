@@ -20,7 +20,7 @@ class FollowsController < ApplicationController
         flash[:alert] = "Something went wrong"
       end
     else
-      flash[:alert] = "Error! You connot follow twice!"
+      flash[:alert] = "Error! You cannot follow twice!"
       return_to_prev_location
     end
   end

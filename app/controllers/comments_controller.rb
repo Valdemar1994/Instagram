@@ -11,8 +11,8 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find((params[:id]))
-    @comment.destroy
     if CommentPolicy.new(@comment, current_user).delete?
+      @comment.destroy
       return_to_prev_location
     else
        flash[:alert] = 'Comment was not deleted!'
